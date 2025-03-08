@@ -1,0 +1,39 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<div class="p-1 md:mt-14 mt-4">
+    <div class="max-w-4xl p-2 w-full border mx-auto bg-white shadow rounded">
+        <p class="font-medium text-gray-600 text-sm">Progress</p>
+        <div class="w-full bg-gray-100 rounded mt-2">
+            <div class="bg-blue-500 text-white text-xs py-1 rounded w-[{{progress}}%]"></div>
+        </div>
+    </div>
+    <div class="max-w-4xl w-full mt-2 border mx-auto bg-white shadow rounded">
+        <div class="p-2 border-b bg-gray-50 rounded-t">
+            <h4 class="font-semibold text-gray-700">Leaderboards</h4>
+        </div>
+        <table class="w-full">
+            <thead>
+                <tr>
+                    <th class="font-normal text-gray-600 py-2">Rank</th>
+                    <th class="font-normal text-gray-600 py-2">Team Name</th>
+                    <th class="font-normal text-gray-600 py-2">Score</th>
+                    <th class="font-normal text-gray-600 py-2">Flags Solved</th>
+                    <th class="font-normal text-gray-600 py-2">Last Solve Time</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr class="border-t hover:bg-gray-50 ease duration-200">
+                    <td class="text-center py-2">{{ user.rank }}</td>
+                    <td class="text-center py-2">{{ user.first_name }}</td>
+                    <td class="text-center py-2">{{ user.score }}</td>
+                    <td class="text-center py-2">{{ user.flags }}</td>
+                    <td class="text-center py-2">{{ user.last_solved_time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

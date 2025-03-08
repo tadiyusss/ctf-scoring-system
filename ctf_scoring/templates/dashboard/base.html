@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>CTF Scoring - Dashboard</title>
+        <script src="{% static 'js/alpine.js' %}"></script>
+        <script src='https://cdn.tailwindcss.com'></script>
+    </head>
+    <body class="bg-blue-50">
+        <nav class="bg-white shadow w-full border-b p-4 flex items-center justify-between">
+            <h4 class="text-xl">CTF Scoring</h4>
+            <ul class="flex items-center space-x-8">
+                <li>{{ user.first_name }}</li>
+                <li>
+                    <a href="{% url 'dashboard' %}">Leaderboard</a>
+                </li>
+                <li>
+                    <a href="{% url 'flags' %}">Flag</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

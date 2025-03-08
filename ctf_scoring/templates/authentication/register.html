@@ -1,0 +1,49 @@
+{% extends "authentication/base.html" %}
+{% block content %}
+<div class="mt-10">
+    <div class="flex items-center space-x-4">
+        <h4 class="font-semibold text-2xl">CTF Scoring System</h4>
+    </div>
+    <p class="text-gray-500 mt-1">Enter your information to create your account.</p>
+</div>
+<div class="my-4 bg-indigo-100 p-2 border-l-4 border-indigo-400 rounded">
+    <p>Your account will be shared among your members. Ensure all shared users comply with the terms of use.</p>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="mt-4 bg-red-600 p-2 rounded">
+        {% elif message.tags == 'success' %}
+            <div class="mt-4 bg-green-600 p-2 rounded">
+        {% elif message.tags == 'warning' %}
+            <div class="mt-4 bg-yellow-600 p-2 rounded">
+        {% else %}
+            <div class="mt-4 bg-blue-600 p-2 rounded">
+        {% endif %}
+            <p class="text-white">{{ message }}</p>
+        </div>
+    {% endfor %}
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="mt-4">
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <ul class="mt-1 text-red-500 text-sm">
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <div class="mt-4">
+        <button class="w-full text-white font-medium py-2 rounded bg-indigo-500 hover:bg-indigo-600 ease duration-200 focus:outline-indigo-500">Register</button>
+    </div>
+    <div class="mt-4 text-center">
+        <p class="text-center text-gray-500 text-sm">Already have an account? <a href="/" class="text-indigo-500">Login.</a></p>
+    </div>
+</form>
+{% endblock %}
