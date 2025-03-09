@@ -89,10 +89,14 @@ def dashboard(request):
     [setattr(user, "rank", i+1) for i, user in enumerate(users)]
     answered = Solved.objects.filter(user=request.user)
     questions = Question.objects.all()
+    if len(questions) > 0:
+        progress = int((len(answered) / len(questions)) * 100)
+    else:
+        progress = 0
     context = { 
         "answered": answered,
         "questions": questions,
-        "progress": int((len(answered) / len(questions)) * 100),
+        "progress": progress,
         "users" : users,
     }
     return render(request, "dashboard/home.html", context)

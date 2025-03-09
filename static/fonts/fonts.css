@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-Regular.ttf');
+}
+
+.font-source-code {
+    font-family: 'Source Code Pro', monospace;
+}

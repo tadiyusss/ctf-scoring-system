@@ -2,13 +2,13 @@
 {% block content %}
 <div class="max-w-2xl mt-14 mx-auto">
     <form method="GET" class="w-full flex items-center space-x-4">
-        <select name="level" class="w-full border rounded px-2 py-1 max-w-32">
+        <select name="level" class="w-full border rounded bg-slate-900 border-slate-700 px-2 py-1 max-w-32">
             <option value="">All</option>
             {% for level in levels %}
             <option value="{{level.name}}">{{level.name}}</option>
             {% endfor %}
         </select>
-        <button class="bg-blue-500 text-sm text-white rounded px-4 py-1">Submit</button>
+        <button class="text-sm px-2 py-1 bg-green-700 text-white rounded hover:bg-green-800 ease duration-200">Filter</button>
     </form>
         {% if messages %}
             {% for message in messages %}
@@ -18,10 +18,10 @@
             {% endfor %}
         {% endif %}
     {% for question in questions %}
-    <div class="rounded shadow border {% if question.answered %}bg-gray-50{% else %}bg-white{% endif %} p-2 mt-4" x-data="{show: false}">
+    <div class="rounded shadow border {% if question.answered %}bg-slate-800 border-slate-700{% else %}bg-slate-900 border-slate-700 {% endif %} p-2 mt-4" x-data="{show: false}">
         <div class="flex w-full justify-between items-center {% if not question.answered %}cursor-pointer{% endif %}" @click="show = !show">
             <div>
-                <h6 class="text-sm font-medium text-gray-500">{{question.level}}</h6>
+                <h6 class="text-sm font-medium text-green-700">{{question.level}}</h6>
                 <p class="mt-1">{{question}}</p>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="question_id" value="{{ question.id }}">
                 {{ submit_form.flag }}
-                <button class="text-sm bg-indigo-500 text-white px-2 py-1 rounded hover:bg-indigo-600 ease duration-200">Submit</button>
+                <button class="text-sm text-white px-2 py-1 rounded bg-green-700 hover:bg-green-800 ease duration-200">Submit</button>
             </form>
         {% endif %}
     </div>

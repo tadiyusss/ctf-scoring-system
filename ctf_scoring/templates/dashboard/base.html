@@ -7,9 +7,10 @@
         <title>CTF Scoring - Dashboard</title>
         <script src="{% static 'js/alpine.js' %}"></script>
         <script src="{% static 'js/tailwind.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}">
     </head>
-    <body class="bg-blue-50">
-        <nav class="bg-white shadow w-full border-b p-4 flex items-center justify-between">
+    <body class="bg-slate-950 text-green-500 font-source-code">
+        <nav class="bg-slate-900 shadow w-full p-4 flex items-center justify-between">
             <h4 class="text-xl">CTF Scoring</h4>
             <ul class="flex items-center space-x-8">
                 <li>{{ user.first_name }}</li>
